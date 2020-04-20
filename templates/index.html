@@ -1,18 +1,62 @@
 <!doctype html>
 <html>
 <head>
-    <title>Classify your Image!</title>
+    <title>COVID19 Images classifier</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-color:black">
+  <h1 class="text-light mb-2" style="margin:auto; width:900px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;"> A Deep Learning approach for COVID-19</h1>
 <div id="maintext" style="position:absolute; margin:auto; width:700px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;">  
-  <h1 class="text-light mb-2"> Upload your image to be classified! </h1>
-  <h4 class="text-light mb-5">(Please upload images less than 500kb in size)</h4>
+
+  <h4 class="text-light mb-5">Upload your image to be classified! </h4>
   <form method=post enctype=multipart/form-data>
      <p class="text-light">
         <input type=file name=file>
         <input type=submit value=Upload>
      </p>
   </form>
+  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">README</button>
+  <footer style="color:white">
+<p>
+<small>
+
+This software is just for research purposes. Full documentation <a href="https://github.com/fral8/InceptionV3COVID19">here</a>. </small>
+
+
+
+</p></footer>
 </div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+   
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Instruction</h2>
+        </div>
+        <div class="modal-body">
+          <p>
+          This tool uses Deep Learning Neural Network in order to discriminate from AP and PA chest XRAY Images the COVID, Pneumonia and Normal state.
+          For better results, use images 1024*1024 in <i>.png</i> format. 
+          
+          
+          
+          
+          </p>
+<br>
+
+      
+        </div>
+      </div>
+ 
+  </div>
+</div>
+
+
+
+
 </body>
