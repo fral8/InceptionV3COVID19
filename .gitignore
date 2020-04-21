@@ -1,0 +1,5 @@
+*.pb
+*.index
+*.data*
+uploads/*
+__pycache__/
