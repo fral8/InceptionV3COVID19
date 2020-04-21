@@ -5,19 +5,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-color:black">
-    {% if error %}
-        <script>
-            alert("Insert an image 'png', 'jpg', 'jpeg'");
-        </script>
-    {% endif %}
+
   <h1 class="text-light mb-2" style="margin:auto; width:900px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;"> A Deep Learning approach for COVID-19</h1>
 <div id="maintext" style="position:absolute; margin:auto; width:700px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;">  
 
   <h4 class="text-light mb-5">Upload your image to be classified! </h4>
   <form method=post enctype=multipart/form-data>
      <p class="text-light">
-        <input type=file name=file>
-        <input type=submit value=Upload>
+        <input type=file name=file id="inputfile">
+        <input type=submit value=Upload id="buttonID">
      </p>
   </form>
   <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">README</button>
@@ -45,10 +41,7 @@ This software is just for research purposes. Full documentation <a href="https:/
           <p>
           This tool uses Deep Learning Neural Network in order to discriminate from AP and PA chest XRAY Images the COVID, Pneumonia and Normal state.
           For better results, use images 1024*1024 in <i>.png</i> format. 
-          
-          
-          
-          
+      
           </p>
 <br>
 
@@ -60,6 +53,30 @@ This software is just for research purposes. Full documentation <a href="https:/
 </div>
 
 
-
-
+<script>
+var filepath = document.getElementById("inputfile").value
+document.getElementById("inputfile").addEventListener('change', validate);
+document.getElementById("buttonID").disabled=true;
+console.log("Ciao")
+function validate(){
+    if(document.getElementById("inputfile").value!=""){
+        console.log("Hello")
+        console.log(document.getElementById("inputfile").value)
+        var dataformat = document.getElementById("inputfile").value.split(".")[document.getElementById("inputfile").value.split(".").length-1]
+        if (dataformat == "png" ||
+        dataformat == "jpg" || 
+        dataformat == "jpeg"){
+            document.getElementById("buttonID").disabled=false;
+        }
+        else{
+            alert("Immagine in formato'.jpg' o '.jpeg' o '.png'")
+            console.log(document.getElementById("inputfile").value.split(".")[1])
+        }
+        }
+    else{
+        document.getElementById("buttonID").disabled=true;
+        console.log("else")
+    }
+}
+</script>
 </body>
