@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, redirect, url_for, render_template
+import werkzeug
 from werkzeug.utils import secure_filename
 import cv2
 
@@ -9,20 +10,29 @@ import numpy as np
 from testing import Testing
 
 test=Testing()
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 filename_global=""
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
 def main_page():
     print(request)
-    try:
-        if request.method == 'POST':
-            file = request.files['file']
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return render_template('index.html',error=True)
+        file = request.files['file']
+        if (file and file.filename != '' and allowed_file(file.filename)):
             filename = secure_filename(file.filename)
-            file.save(os.path.join('uploads', filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('prediction', filename=filename))
-    except:
-        pass
+        else:
+            return render_template('index.html',error=True)
     return render_template('index.html')
 
 @app.route('/prediction/<filename>')
@@ -66,4 +76,4 @@ def move_forward():
     return render_template('ty.html')
 
 
-app.run(debug=False)
+app.run(host = "0.0.0.0" , port = 80)

@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-color:black">
+    {% if error %}
+        <script>
+            alert("Insert an image 'png', 'jpg', 'jpeg'");
+        </script>
+    {% endif %}
   <h1 class="text-light mb-2" style="margin:auto; width:900px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;"> A Deep Learning approach for COVID-19</h1>
 <div id="maintext" style="position:absolute; margin:auto; width:700px; height:200px; text-align:center; top:0; bottom: 0; left: 0; right: 0;">  
 
@@ -21,8 +26,6 @@
 <small>
 
 This software is just for research purposes. Full documentation <a href="https://github.com/fral8/InceptionV3COVID19">here</a>. </small>
-
-
 
 </p></footer>
 </div>
